@@ -1,6 +1,6 @@
 import { createModel } from "@rematch/core";
-import { RootModel } from "../root.model";
-import { CocktailService } from "../services/cocktail.service";
+import { CocktailService } from "../../services/cocktail.service";
+import { RootModel } from "./root.model";
 
 export type TCocktail = {
   cocktailId: string;
@@ -18,7 +18,7 @@ const COCKTAIL_INITIAL_STATE: TCocktailState = {
   cocktailList: []
 };
 
-export const cocktailModel = createModel<RootModel>()({
+export const cocktailStore = createModel<RootModel>()({
   state: {...COCKTAIL_INITIAL_STATE},
   reducers: {
     setFetchedCocktailList(state: TCocktailState, payload: TCocktail[])  {
@@ -28,7 +28,7 @@ export const cocktailModel = createModel<RootModel>()({
   effects: (dispatch)  => ({
     async fetchCocktailList() {
       const response = await CocktailService.FetchRandomCocktails();
-      dispatch.cocktailModel.setFetchedCocktailList(response);
+      dispatch.cocktailStore.setFetchedCocktailList(response);
     }
 
   })

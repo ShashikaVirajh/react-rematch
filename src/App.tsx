@@ -7,10 +7,10 @@ import { Dispatch, RootState } from './store/store';
 export const App: FC = (): JSX.Element => {
   const dispatch = useDispatch<Dispatch>();
 
-  const cocktailList = useSelector((state: RootState) => state.cocktailModel.cocktailList);
+  const cocktailList = useSelector((state: RootState) => state.cocktailStore.cocktailList);
 
   useEffect(() => {
-    dispatch.cocktailModel.fetchCocktailList();
+    dispatch.cocktailStore.fetchCocktailList();
   }, [dispatch]);
 
   return (

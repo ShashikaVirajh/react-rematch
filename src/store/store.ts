@@ -6,7 +6,7 @@ import {
   useSelector as useReduxSelector,
 } from 'react-redux';
 
-import { RootModel, models } from './root.model';
+import { RootModel, models } from './models/root.model';
 
 type FullModel = ExtraModelsFromLoading<RootModel>;
 
@@ -19,6 +19,4 @@ export type Store = typeof store;
 export type Dispatch = RematchDispatch<RootModel>;
 export type RootState = RematchRootState<RootModel, FullModel>;
 
-export const useDispatch = () => useReduxDispatch<Dispatch>();
-export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 

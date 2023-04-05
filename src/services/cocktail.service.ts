@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { COCKTAIL_LIST_LENGTH, FETCH_COCKTAILS_URL } from '../../constants';
-import { normalizeFetchRandomCocktailsResponse } from '../../normalizers/cocktail.normalizer';
+import { COCKTAIL_LIST_LENGTH, FETCH_COCKTAILS_URL } from '../constants';
+import { normalizeFetchRandomCocktailsResponse } from '../normalizers/cocktail.normalizer';
+
 
 export class CocktailService {
   static FetchRandomCocktails = async (): Promise<any> => {
