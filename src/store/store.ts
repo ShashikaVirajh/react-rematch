@@ -3,11 +3,11 @@ import loadingPlugin, { ExtraModelsFromLoading } from '@rematch/loading';
 
 import { RootModel, models } from './models/root.model';
 
-type FullModel = ExtraModelsFromLoading<RootModel>;
+type FullModel = ExtraModelsFromLoading<RootModel, { type: 'full' }>;
 
 export const store = init<RootModel, FullModel>({
     models,
-    plugins: [loadingPlugin()],
+    plugins: [loadingPlugin({ type: 'full' })],
   });
 
 export type Store = typeof store;
