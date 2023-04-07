@@ -10,17 +10,16 @@ import {
 
 import { FC, useMemo } from 'react';
 import { TCocktail } from '../store/models/cocktail.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { Dispatch, RootState } from '../store/store';
 
 type Props = {
   cocktailInfo: TCocktail;
 };
 
 export const CocktailCard: FC<Props> = ({ cocktailInfo }): JSX.Element => {
-  // const favouriteList = useSelector(
-  //   (state: RootState) => state.cocktail.data.favouriteList || []
-  // );
-
-  const favouriteList: any = [];
+  const dispatch = useDispatch<Dispatch>();
+  const favouriteList = useSelector((state: RootState) => state.cocktailStore.favouriteList ?? []);
 
   const favouriteIds = useMemo(() => {
     return favouriteList.map((favourite: TCocktail) => {
@@ -30,12 +29,12 @@ export const CocktailCard: FC<Props> = ({ cocktailInfo }): JSX.Element => {
 
   const handleAFavourites = (): void => {
     if (favouriteList.length === 0 || !favouriteIds.includes(cocktailInfo.cocktailId)) {
-      // dispatch(addToFavorite(cocktailInfo));
+      dispatch.cocktailStore.addToFavourites(cocktailInfo);
 
       return;
     }
 
-    // dispatch(removeFromFavourite(cocktailInfo.cocktailId));
+    dispatch.cocktailStore.removeFromFavourites(cocktailInfo.cocktailId);
   };
 
   const buttonText = !favouriteIds.includes(cocktailInfo.cocktailId)

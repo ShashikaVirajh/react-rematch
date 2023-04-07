@@ -12,10 +12,12 @@ export type TCocktail = {
 
 type TCocktailState = {
   cocktailList: TCocktail[] | [];
+  favouriteList: TCocktail[] | [];
 };
 
 const COCKTAIL_INITIAL_STATE: TCocktailState = {
-  cocktailList: []
+  cocktailList: [],
+  favouriteList: []
 };
 
 export const cocktailStore = createModel<RootModel>()({
@@ -23,14 +25,29 @@ export const cocktailStore = createModel<RootModel>()({
   reducers: {
     setFetchedCocktailList(state: TCocktailState, payload: TCocktail[])  {
       return {...state, cocktailList: payload}
-    }
+    },
+    handleAddToFavourites(state: TCocktailState, payload: TCocktail)  {
+      return {...state, favouriteList: [...state.favouriteList, payload, ]}
+    },
+    handleRemoveFromFavourites(state: TCocktailState, payload: string)  {
+      const updatedFavouriteList = state.favouriteList.filter((favourite) => {
+        return favourite.cocktailId !== payload;
+      });
+
+      return {...state, favouriteList: updatedFavouriteList}
+    },
   },
   effects: (dispatch)  => ({
     async fetchCocktailList() {
       const response = await CocktailService.FetchRandomCocktails();
       dispatch.cocktailStore.setFetchedCocktailList(response);
+    },
+    addToFavourites(payload: TCocktail) {
+      dispatch.cocktailStore.handleAddToFavourites(payload);
+    },
+    removeFromFavourites(payload: string) {
+      dispatch.cocktailStore.handleRemoveFromFavourites(payload)
     }
-
   })
 })
 
