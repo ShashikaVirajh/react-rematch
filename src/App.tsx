@@ -8,8 +8,12 @@ export const App: FC = (): JSX.Element => {
   const dispatch = useDispatch<Dispatch>();
 
   const cocktailList = useSelector((state: RootState) => state.cocktailStore.cocktailList);
-  const isLoading = useSelector((state: RootState) => state.loading.models.cocktailStore.loading);
-  const cocktailError = useSelector((state: RootState) => state.loading.models.cocktailStore.error);
+  const isLoading = useSelector(
+    (state: RootState) => state.loading.effects.cocktailStore.fetchCocktailList.loading
+  );
+  const cocktailError = useSelector(
+    (state: RootState) => state.loading.effects.cocktailStore.fetchCocktailList.error
+  );
 
   useEffect(() => {
     dispatch.cocktailStore.fetchCocktailList();
