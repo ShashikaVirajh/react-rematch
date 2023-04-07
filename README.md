@@ -1,7 +1,8 @@
 ## Motivation
 
 - This project was developed as a reference project to start working with @rematch/core redux library.
-- Tried to provide a complete but simple example to the developers who wants to easily get used to this amazing library.
+- Tried to provide a complete example to the developers who wants to easily get used to this amazing library.
+- This covers, integrating rematch to a react project, handling rematch loading and rematch persist.
 
 ## Installation Guide
 
@@ -26,7 +27,8 @@ Sometimes these APIs are not working. It must be due to the free plan of cocktai
 
 Typescript - for type safety
 Redux Rematch - as the redux library
-Redux loading - for the handle api loading status
+Rematch loading - for the handle api loading status
+Rematch persist - to persist data on store
 Mui - As the UI library
 Axios - to make API requests
 
